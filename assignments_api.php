@@ -5,7 +5,19 @@ declare(strict_types=1);
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/includes/auth.php';
 
-requireRole('student');
+requireLogin();
+
+$user = currentUser();
+$role = $user['role'] ?? '';
+
+if ($role !== 'student' && $role !== 'admin') {
+    http_response_code(403);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode([
+        'error' => 'You are not allowed to access this resource.',
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    exit;
+}
 
 $search = trim((string) ($_GET['search'] ?? ''));
 

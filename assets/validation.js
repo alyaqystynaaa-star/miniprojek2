@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            if (password.length < 8) {
+            if (password.length < 6) {
                 event.preventDefault();
                 showClientError(registerForm, 'Password must be at least 6 characters.');
             }

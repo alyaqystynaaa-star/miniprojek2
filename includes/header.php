@@ -15,7 +15,7 @@ if ($layout === 'app' && $user !== null) {
     if (($user['role'] ?? '') === 'admin') {
         $navItems = [
             ['key' => 'admin-dashboard', 'label' => 'Dashboard', 'href' => 'admin.php'],
-            ['key' => 'admin-create', 'label' => 'Create Assignment', 'href' => 'admin.php#assignment-form'],
+            ['key' => 'admin-create', 'label' => 'Create Assignment', 'href' => 'create_assignment.php'],
             ['key' => 'admin-submissions', 'label' => 'View All Submissions', 'href' => 'admin_submissions.php'],
             ['key' => 'logout', 'label' => 'Logout', 'href' => 'logout.php'],
         ];

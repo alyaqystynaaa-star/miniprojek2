@@ -107,7 +107,7 @@ a:hover {
 }
 
 .btn:hover {
-    background: #0f324a;
+    background: #338dca;
     transform: translateY(-1px);
 }
 
@@ -138,7 +138,7 @@ a:hover {
     padding: 6px 12px;
     border-radius: 999px;
     background: #e6f4ff;
-    color: #4989b4;
+    color: #1f78b4;
     font-weight: 700;
     font-size: 0.9rem;
 }
@@ -157,8 +157,11 @@ a:hover {
 }
 
 .top-nav {
-    background: #dae0e6;
+    background: #2f4053;
     border-bottom: 1px solid #243241;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .top-nav .nav-inner {
@@ -272,6 +275,10 @@ a:hover {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     gap: 24px;
+}
+
+#assignment-form {
+    scroll-margin-top: 96px;
 }
 
 .field-note {

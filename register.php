@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
-    $role = $_POST['role'] ?? 'student';
 
     if ($name === '' || $email === '' || $password === '') {
         $error = 'All fields are required.';
@@ -26,8 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Please enter a valid email address.';
     } elseif (strlen($password) < 6) {
         $error = 'Password must be at least 6 characters.';
-    } elseif (!in_array($role, ['admin', 'student'], true)) {
-        $error = 'Invalid role selected.';
     } else {
         $checkStatement = $pdo->prepare('SELECT user_id FROM users WHERE email = :email LIMIT 1');
         $checkStatement->execute(['email' => $email]);
@@ -44,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'name' => $name,
                 'email' => $email,
                 'password' => $hashedPassword,
-                'role' => $role,
+                'role' => 'student',
             ]);
 
             $_SESSION['success'] = 'Registration successful. Please login.';
@@ -71,6 +68,7 @@ require __DIR__ . '/includes/header.php';
 
     <form method="post" action="" data-validate="register" novalidate>
         <p class="message error hidden-message" data-client-message></p>
+        <p class="helper-text text-center">Pendaftaran ini akan buat akaun student secara automatik.</p>
 
         <div class="input-group">
             <label for="name">Name</label>
@@ -85,14 +83,6 @@ require __DIR__ . '/includes/header.php';
         <div class="input-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
-        </div>
-
-        <div class="input-group">
-            <label for="role">Role</label>
-            <select id="role" name="role" required>
-                <option value="student" <?= ($_POST['role'] ?? 'student') === 'student' ? 'selected' : '' ?>>Student</option>
-                <option value="admin" <?= ($_POST['role'] ?? '') === 'admin' ? 'selected' : '' ?>>Admin</option>
-            </select>
         </div>
 
         <button class="btn btn-block" type="submit">Register</button>
