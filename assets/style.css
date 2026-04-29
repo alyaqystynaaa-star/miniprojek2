@@ -169,12 +169,12 @@ a:hover {
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    gap: 24px;
+    gap: 23px;
     padding: 14px 20px;
 }
 
 .top-nav a {
-    color: #ffffff;
+    color: #e6c6c6;
     font-weight: 600;
     font-size: 0.95rem;
 }
